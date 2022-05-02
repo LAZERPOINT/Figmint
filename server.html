@@ -1,0 +1,130 @@
+<html>
+  <body>
+    <form id="settings">
+      <img src="pfp.svg" id="pfp">
+      <input id="usernaem" class="usernaem" type="text" value="" readonly="">
+      <a href="index.html">Log out</a>
+    </form>
+    <p id=title>Vanadite Post</p>
+    <form id="sign">
+      <input id="alias" placeholder="Public Key">
+      <input id="pass" type="password" placeholder="Private Key">
+      <input id="in" type="submit" value="Enter Space">
+      <input id="up" type="button" value="Create Space">
+    </form>
+
+    <ul></ul>
+
+    <form id="said">
+        <input id="say">
+        <input id="seporater" type="text" value=": " readonly="" width="10px">
+        <input id="speak" type="submit" value="speak" value="allias">
+    </form>
+<style type="text/css">
+  #pfp {
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
+    position: absolute;
+    left: -79%;
+    top: 10px;
+    background: url("rainbow.png");
+  }
+  a {
+    background: black;
+    color: white;
+    padding: 6px;
+    text-decoration: none;
+    border-radius: 10px;
+  }
+  #title {
+    color: white;
+    position: sticky;
+  }
+  #settings {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  ul {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    color: white;
+  }
+  #seporater {
+    position: absolute;
+    display: none;
+  }
+	#said {
+		position: sticky;
+		bottom: 0;
+	}
+body {
+  background: #22232A;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  background-size: cover;
+  transition: 1s;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+	input {
+    font-family: 'Poppins', sans-serif;
+		border: none;
+		background-color: #20222D;
+    color: white;
+    	backdrop-filter: blur(5px) saturate(100%);
+		outline: none;
+		padding: 10px;
+		border-radius: 10px;
+		box-shadow: -5px -5px 15px rgba(255,255,255, 0.2), 5px 5px 15px rgba(70,70,70,0.12);
+	}
+	button {
+		background-color: rgba(250, 250, 250, 0.20);
+    	backdrop-filter: blur(5px) saturate(100%);
+		box-shadow: -5px -5px 15px rgba(255,255,255, 0.5), 5px 5px 15px rgba(70,70,70,0.12);
+		border: none;
+		outline: none;
+		padding: 10px;
+		border-radius: 10px;
+	}
+</style>
+    <script src="jquery.js"></script>
+    <script src="gun.js"></script>
+    <script src="sea.js"></script>
+    <!-- script src="https://cdn.jsdelivr.net/npm/gun/lib/webrtc.js"></script -->
+    <script>
+    document.getElementById("usernaem").value = sessionStorage.getItem("Welcome");
+    var gun = Gun(['http://localhost:8765/gun', 'https://gun-manhattan.herokuapp.com/gun']);
+    var user = gun.user();
+
+    $('#up').on('click', function(e){
+      user.create($('#alias').val(), $('#pass').val());
+    });
+
+    $('#sign').on('submit', function(e){
+      e.preventDefault();
+      user.auth($('#alias').val(), $('#pass').val());
+    });
+
+    $('#said').on('submit', function(e){
+      e.preventDefault();
+      if(!user.is){ return }
+      user.get('said').set($('#usernaem').val() + $('#seporater').val() + $('#say').val());
+    });
+
+    function UI(say, id){
+      var li = $('#' + id).get(0) || $('<li>').attr('id', id).appendTo('ul');
+      $(li).text(say);
+    };
+
+    gun.on('auth', function(){
+      $('#sign').hide();
+      user.get('said').map().once(UI);
+    });
+    </script>
+  </body>
+</html>
