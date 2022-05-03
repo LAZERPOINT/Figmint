@@ -1,11 +1,19 @@
 <html>
   <body>
+<fieldset id="menu">
+  <legend>Files</legend>
+  <p> Server navigation: </p>
+  <a href="server.html"> Home </a>
+  <br>
+  <p>User Options:</p>
+  <a id="louout"href="index.html">Log out</a>
+  <p> Other apps: </p>
+  <a href="https://lazerpoint.github.io/VanaditeOS-re-write">Vanadite OS</a>
+</fieldset>
     <form id="settings">
-      <img src="pfp.svg" id="pfp">
-      <input id="usernaem" class="usernaem" type="text" value="" readonly="">
-      <a href="index.html">Log out</a>
+      <img src="favicon.svg" id="pfp"> &nbsp
+       <p id=title>Vanadite Post &nbsp</p><input id="usernaem" class="usernaem" type="text" value="" readonly="">
     </form>
-    <p id=title>Vanadite Post</p>
     <form id="sign">
       <input id="alias" placeholder="Public Key">
       <input id="pass" type="password" placeholder="Private Key">
@@ -14,37 +22,88 @@
     </form>
 
     <ul></ul>
-
     <form id="said">
         <input id="say">
         <input id="seporater" type="text" value=": " readonly="" width="10px">
         <input id="speak" type="submit" value="speak" value="allias">
     </form>
 <style type="text/css">
+  #menu {
+    position: absolute;
+    left: -475;
+    width: 200px;
+    height: 97vh;
+    background: #020202;
+    border-radius: 0px 20px 20px 0px;
+    border: none;
+  }
+  #usernaem {
+    position: relative;
+    top: -25;
+    right: -40;
+  }
+  #login-and-such {
+  }
+  #speak {
+    position: relative;
+    border: none;
+    background: none;
+    color: none;
+  }
+  #say {
+    width: 504px;
+    font-size: 24px;
+    height: 41px;
+    transition: all 1s;
+    transition-timing-function: ease-in;
+  }
+  #say:hover {
+    border-bottom: 8px solid #BEC7FF;
+    height: 41px;
+    transition: all 1s;
+    transition-timing-function: ease-in;
+  }
+    input:hover {
+    border-bottom: 8px solid #BEC7FF;
+    transition: all 1s;
+    transition-timing-function: ease-in;
+  }
   #pfp {
+    position: relative;
+    margin: 0;
     width: 50px;
     height: 50px;
     border-radius: 20px;
-    position: absolute;
-    left: -79%;
-    top: 10px;
     background: url("rainbow.png");
+    display: inline-block;
+    top: -5;
   }
   a {
+    margin: 0;
     background: black;
     color: white;
     padding: 6px;
     text-decoration: none;
-    border-radius: 10px;
+    border-radius: 15px;
   }
   #title {
     color: white;
-    position: sticky;
+    position: relative;
+    display: inline-block;
+    font-size: 20px;
+    top: -22;
   }
   #settings {
     position: sticky;
     top: 0;
     z-index: 1;
+    top: 0;
+    width:;
+    height: 40px;
+    background-color: rgba(250, 250, 250, 0.20);
+    backdrop-filter: blur(5px) saturate(100%);
+    border-radius: 0px 0 20px 20px;
+    padding: 10px;
   }
   ul {
     padding: 10px;
@@ -59,8 +118,14 @@
 	#said {
 		position: sticky;
 		bottom: 0;
+    background: rgba(229, 239, 249, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    border-radius: 15px;
 	}
 body {
+  transition: all 1s;
+  top: 0;
   background: #22232A;
   color: white;
   font-family: 'Poppins', sans-serif;
@@ -72,15 +137,16 @@ body {
   transform: translateX(-50%);
 }
 	input {
+    transition-timing-function: ease-in;
     font-family: 'Poppins', sans-serif;
 		border: none;
-		background-color: #20222D;
+		background: rgba(229, 239, 249, 0.1);
+    backdrop-filter: blur(10px);
     color: white;
     	backdrop-filter: blur(5px) saturate(100%);
 		outline: none;
 		padding: 10px;
 		border-radius: 10px;
-		box-shadow: -5px -5px 15px rgba(255,255,255, 0.2), 5px 5px 15px rgba(70,70,70,0.12);
 	}
 	button {
 		background-color: rgba(250, 250, 250, 0.20);

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60" height="37" viewBox="0 0 60 37">
+  <defs>
+    <clipPath id="clip-plane">
+      <rect width="60" height="37"/>
+    </clipPath>
+  </defs>
+  <g id="plane" clip-path="url(#clip-plane)">
+    <path id="Path_23" data-name="Path 23" d="M-81.64-1245.129l2.621,6.411,11.165-17.41-1.569-.738-13.072,10.95Z" transform="translate(105.895 1266.903)" fill="#d2d2d2" stroke="#d2d2d2" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    <path id="Icon_awesome-paper-plane" data-name="Icon awesome-paper-plane" d="M21.049.141.553,11.965a1.062,1.062,0,0,0,.1,1.91l4.7,1.972,12.7-11.2a.265.265,0,0,1,.38.367L7.783,18v3.56a1.061,1.061,0,0,0,1.879.7l2.808-3.418,5.51,2.308a1.064,1.064,0,0,0,1.459-.8l3.184-19.1A1.061,1.061,0,0,0,21.049.141Z" transform="translate(18.68 6.179)" fill="#fff"/>
+  </g>
+</svg>
