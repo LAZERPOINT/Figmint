@@ -7,44 +7,42 @@
        <p id=title>Figmint</p><input id="usernaem" class="usernaem" type="text" value="" readonly="">
        <a id="logut" href="index.html">Log-out</a>
     </form>
-    <form id="sign">
-      <h1> Join/Create spaces with Figmint</h1>
-      <input id="alias" placeholder="Public Key">
-      <input id="pass" type="password" placeholder="Private Key">
-      <input id="in" type="submit" value="Enter Space">
-      <input id="up" type="button" value="Create Space">
+      <img id="profpic" width="100px" height="100px" src="https://avatars.dicebear.com/api/micah/your-custom-seed.svg">
+    <p id="displayuser"> Welcome ${sessionStorage.getItem("Welcome");}</p>
+    <form id="statusadd">
+      <input type="" id="userstatus" placeholder="Status">
+      <input type="" id="seporater" value=": ">
+      <input type="submit" id="statsub">
     </form>
-    <ul></ul>
-    <form id="said">
-        <input id="say" placeholder="Message" width="10px">
-        <input id="seporater" type="text" value=": " readonly="" width="10px">
-        <input type="text" id="meida" width="10px" placeholder="Link (include https:///http://)">
-        <input id="speak" type="submit" value="speak" value="allias">
-    </form>
+    <form id="tempuser">
+    <input type="" id="userchange" placeholder="Temporary Username changer">
+    <input type="" value=": {Temp User}" id="temptag" placeholder="">
+    <input id="usrsubmit" type="submit"></input>
+  </form>
     <nav class="nav">
-  <a href="#" class="nav__link nav__link--active">
+  <a href="server.html" class="nav__link">
     <i class="material-icons nav__icon">home_filled</i>
     <span class="nav__text">Home</span>
   </a>
-  <a href="profile.html" class="nav__link">
+  <a href="#" class="nav__link nav__link--active">
     <i class="material-icons nav__icon">person</i>
     <span class="nav__text">Profile</span>
   </a>
 </nav>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <style type="text/css">
-  #pfpusr {
-      border-radius: 100px;
-      position: relative;
+  #profpic {
+    border-radius: 30px;
+    background: white;
   }
-  #sign {
-    right: 50%;
-    top: 10%;
-    transform: translateX(50%);
-    position: absolute;
+  #temptag {
+    display: none;
   }
-  ::marker {
-    color: #0F0F0F;
+  #userchange {
+    width: 300px;
+  }
+  p {
+    font-size: 30px;
   }
   .nav {
     position: fixed;
@@ -233,45 +231,21 @@ body {
     <script src="sea.js"></script>
     <!-- script src="https://cdn.jsdelivr.net/npm/gun/lib/webrtc.js"></script -->
     <script>
-    document.querySelector("#meida").addEventListener("change", function() {
-    const key = inpkey.value;
-
-    const reader = new FileReader();
-
-    reader.addEventListener("load", () => {
-      localStorage.setItem(inpkey.value, reader.result);
-      document.getElementById("meida").innerHTML.value = reader.result;
-    });
-
-    reader.readAsDataURL(this.files[0]);
-  });
     document.getElementById("usernaem").value = sessionStorage.getItem("Welcome");
     var gun = Gun(['http://localhost:8765/gun', 'https://gun-manhattan.herokuapp.com/gun']);
     var user = gun.user();
-
-    $('#up').on('click', function(e){
-      user.create($('#alias').val(), $('#pass').val());
+    document.getElementById("displayuser").innerHTML = sessionStorage.getItem("Welcome");
+    document.getElementById("profpic").src = `https://avatars.dicebear.com/api/micah/${sessionStorage.getItem("Welcome")}.svg`;
+    $('#tempuser').on('submit', function(e){
+      var userchange = document.getElementById("userchange").value;
+      var temptag = document.getElementById("temptag").value;
+      sessionStorage.setItem("Welcome", userchange + temptag);
     });
-
-    $('#sign').on('submit', function(e){
-      e.preventDefault();
-      user.auth($('#alias').val(), $('#pass').val());
-    });
-
-    $('#said').on('submit', function(e){
-      e.preventDefault();
-      if(!user.is){ return }
-      user.get('said').set($('#usernaem').val() + $('#seporater').val() + $('#say').val() + $('#seporater').val() + $('#meida').val());
-    });
-    function UI(say, usernaem, id){
-      var li = $('#' + id).get(0) || $(`<img id="pfpusr" src="https://avatars.dicebear.com/api/micah/${say}.svg" width="30px" height="30px"><li>`).attr('id', id).appendTo('ul');
-      $(li).text(say);
-    };
-
-    gun.on('auth', function(){
-      $('#sign').hide();
-      $('#said').show();
-      user.get('said').map().once(UI);
+    $('#statusadd').on('submit', function(e){
+      var usernameusr = sessionStorage.getItem("Welcome");
+      var userstatus = document.getElementById("userstatus").value;
+      var seporater = document.getElementById("seporater").value;
+      sessionStorage.setItem("Welcome", usernameusr + seporater + userstatus);
     });
     </script>
   </body>

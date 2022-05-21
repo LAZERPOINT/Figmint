@@ -1,6 +1,13 @@
 <html>
   <body>
+  	<link rel="shortcut icon" type="image/x-icon" href="favicon.png">
+  	<link rel="manifest" href="manifest.json">
   	<p> We recomend using landscape mode on mobile devices for use on this website </p>
+  	<script type="text/javascript">
+  		if ('serveiceWorker' in navigator) {
+  			navigator.serviceWorker.register('/service-worker.js');
+  		}
+  	</script>
 
     <form id="sign">
       <input id="usralias" placeholder="Username">
@@ -15,7 +22,8 @@
 		position: sticky;
 		width: 100%;
 		top: 0;
-		border-radius: 10px;
+		padding: 5px;
+		border-radius: 5px;
 	}
 	  @veiwport {
 	}
